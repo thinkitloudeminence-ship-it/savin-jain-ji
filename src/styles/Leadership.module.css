@@ -1,0 +1,95 @@
+/* src/styles/Leadership.module.css */
+.leadership {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8vh 7vw;
+  background: var(--black);
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(2.2rem, 5.4vw, 3.8rem);
+  margin-bottom: 1rem;
+  font-family: var(--font-playfair);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.title em {
+  color: var(--gold);
+  font-family: var(--font-cormorant);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.lede {
+  max-width: 46ch;
+  margin-bottom: 4rem;
+  font-size: 1.05rem;
+}
+
+.constellation {
+  position: relative;
+  width: min(900px, 88vw);
+  height: 50vh;
+  min-height: 280px;
+}
+
+.star {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-space);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  letter-spacing: 0.06em;
+  color: rgba(250, 249, 246, 0.55);
+  padding: 0.6em 1.2em;
+  border: 1px solid var(--border);
+  border-radius: 40px;
+  background: var(--glass);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: default;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  scale: 0.8;
+}
+
+.star:hover {
+  color: var(--black);
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .constellation {
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  .star {
+    position: static;
+    transform: none !important;
+    font-size: 0.85rem;
+    padding: 0.5em 1em;
+  }
+
+  .star:hover {
+    transform: scale(1.05) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lede {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+}

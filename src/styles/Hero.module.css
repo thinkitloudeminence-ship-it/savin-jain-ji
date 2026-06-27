@@ -1,0 +1,408 @@
+/* src/styles/Hero.module.css */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heroImage {
+  object-fit: contain;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  background: var(--black);
+}
+
+/* Alternative: If you want full cover with proper positioning */
+.heroImageCover {
+  object-fit: cover;
+  object-position: center 30%;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(5, 5, 5, 0.85) 0%,
+    rgba(5, 5, 5, 0.5) 40%,
+    rgba(5, 5, 5, 0.3) 60%,
+    rgba(5, 5, 5, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50px;
+  font-family: var(--font-space);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.05);
+  animation: fadeInDown 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes fadeInDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.name {
+  font-family: var(--font-playfair);
+  font-weight: 900;
+  font-size: clamp(3rem, 12vw, 8rem);
+  letter-spacing: -0.02em;
+  color: var(--ivory);
+  line-height: 1.1;
+  text-shadow: 0 0 80px rgba(212, 175, 55, 0.15), 0 10px 40px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.name span {
+  display: inline-block;
+}
+
+.rolesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.2rem;
+  margin-top: -0.5rem;
+}
+
+.role {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  color: rgba(250, 249, 246, 0.85);
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.separator {
+  color: var(--gold);
+  opacity: 0.5;
+  margin: 0 0.3rem;
+}
+
+.cta {
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.2rem 2.8rem;
+  border: 1px solid var(--gold);
+  border-radius: 50px;
+  color: var(--ivory);
+  font-family: var(--font-space);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+}
+
+.ctaButton:hover {
+  color: var(--black);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+}
+
+.ctaButton:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.ctaButton svg {
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover svg {
+  transform: translateX(4px);
+}
+
+.scroll {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  opacity: 0;
+  font-family: var(--font-space);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.6);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(0.6);
+    opacity: 1;
+  }
+}
+
+.heroGlow {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08), transparent 70%);
+  pointer-events: none;
+  animation: glowFloat 8s ease-in-out infinite;
+  z-index: 2;
+}
+
+.heroGlowTwo {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.05), transparent 70%);
+  pointer-events: none;
+  animation: glowFloat 10s ease-in-out infinite reverse;
+  z-index: 2;
+}
+
+@keyframes glowFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(5%, 5%) scale(1.1);
+  }
+  66% {
+    transform: translate(-5%, -5%) scale(0.9);
+  }
+}
+
+.floatingParticles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: floatParticle 8s ease-in-out infinite;
+  opacity: 0.1;
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.5);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-20px, -60px) scale(0.8);
+    opacity: 0.2;
+  }
+  75% {
+    transform: translate(40px, -30px) scale(1.2);
+    opacity: 0.4;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heroContent {
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .name {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .rolesContainer {
+    gap: 0.3rem;
+  }
+
+  .role {
+    font-size: 0.85rem;
+  }
+
+  .separator {
+    margin: 0 0.15rem;
+  }
+
+  .ctaButton {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.7rem;
+  }
+
+  .badge {
+    font-size: 0.55rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(5, 5, 5, 0.9) 0%,
+      rgba(5, 5, 5, 0.6) 30%,
+      rgba(5, 5, 5, 0.4) 50%,
+      rgba(5, 5, 5, 0.9) 100%
+    );
+  }
+
+  .heroImage {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 2.2rem;
+  }
+
+  .rolesContainer {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .role {
+    font-size: 0.8rem;
+    justify-content: center;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .ctaButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.65rem;
+  }
+
+  .scroll {
+    bottom: 2vh;
+  }
+
+  .scrollLine {
+    height: 25px;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(5, 5, 5, 0.92) 0%,
+      rgba(5, 5, 5, 0.7) 30%,
+      rgba(5, 5, 5, 0.5) 50%,
+      rgba(5, 5, 5, 0.92) 100%
+    );
+  }
+
+  .heroImage {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .name {
+    font-size: clamp(3.5rem, 8vw, 5rem);
+  }
+
+  .heroImage {
+    object-fit: cover;
+    object-position: center 40%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .heroImage {
+    object-fit: cover;
+    object-position: center 35%;
+  }
+}
