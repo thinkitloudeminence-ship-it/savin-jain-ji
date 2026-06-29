@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "@/styles/Navbar.module.css";
 
 export default function Navbar() {
@@ -18,10 +19,8 @@ export default function Navbar() {
   const scrollToSection = (sectionId: string) => {
     setIsOpen(false);
     
-    // Try to find section
     let section = document.getElementById(sectionId);
     
-    // If not found, try common variations
     if (!section) {
       const idMap: Record<string, string> = {
         "story": "story",
@@ -41,7 +40,6 @@ export default function Navbar() {
       console.log(`✅ Scrolled to: ${sectionId}`);
     } else {
       console.error(`❌ Section not found: ${sectionId}`);
-      alert(`Section "${sectionId}" not found on page. Please check IDs.`);
     }
   };
 
@@ -59,10 +57,14 @@ export default function Navbar() {
       <div className={styles.navContainer}>
         <button
           onClick={() => scrollToSection("hero")}
-          className={styles.logo}
+          className={styles.logoBtn}
+          aria-label="Go to Hero section"
         >
-          <span className={styles.logoGold}>S</span>J
-          <span className={styles.logoSub}>Savin Jain</span>
+          <img
+            src="/SAVIN JAIN LOGO.png"
+            alt="Savin Jain Logo"
+            className={styles.logoImage}
+          />
         </button>
 
         <button

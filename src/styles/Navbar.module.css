@@ -1,3 +1,4 @@
+/* src/styles/Navbar.module.css - Clean Version */
 .navbar {
   position: fixed;
   top: 0;
@@ -26,38 +27,24 @@
   justify-content: space-between;
 }
 
-.logo {
-  font-family: var(--font-inter), sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  letter-spacing: -0.02em;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+.logoBtn {
   background: none;
   border: none;
+  cursor: pointer;
   padding: 0;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
 }
 
-.logo:hover {
+.logoBtn:hover {
   transform: scale(1.05);
 }
 
-.logoGold {
-  color: var(--gold);
-}
-
-.logoSub {
-  font-size: 0.6rem;
-  font-weight: 400;
-  font-family: var(--font-inter), sans-serif;
-  letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.4);
-  margin-left: 0.5rem;
+.logoImage {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
 .navLinks {
@@ -206,13 +193,13 @@
     display: flex;
   }
 
-  .logoSub {
-    display: none;
-  }
-
   .navCTA {
     padding: 0.8rem 2rem !important;
     font-size: 1rem;
+  }
+
+  .logoImage {
+    height: 35px;
   }
 }
 
@@ -223,7 +210,13 @@
   .navbar.scrolled {
     padding: 0.6rem 1.2rem;
   }
-  .logo {
-    font-size: 1.4rem;
+  .logoImage {
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoImage {
+    height: 25px;
   }
 }
