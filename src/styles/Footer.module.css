@@ -145,7 +145,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   width: 100%;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -155,34 +155,76 @@
 
 .contact {
   display: flex;
-  gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 1.5rem 2.5rem;
 }
 
-.contact p {
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 0.85rem;
-  color: rgba(250, 249, 246, 0.4);
+  color: rgba(250, 249, 246, 0.5);
   font-family: var(--font-inter);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactItem:hover {
+  color: var(--gold);
+}
+
+.contactItem svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--gold);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.contactItem:hover svg {
+  opacity: 1;
 }
 
 .social {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.social a {
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-space);
   font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(250, 249, 246, 0.3);
+  color: rgba(250, 249, 246, 0.4);
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
 }
 
-.social a::after {
+.socialLink svg {
+  width: 22px;
+  height: 22px;
+  fill: rgba(250, 249, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  color: var(--gold);
+}
+
+.socialLink:hover svg {
+  fill: var(--gold);
+  transform: translateY(-2px);
+}
+
+.socialLink::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -193,37 +235,46 @@
   transition: width 0.3s ease;
 }
 
-.social a:hover {
-  color: var(--gold);
-}
-
-.social a:hover::after {
+.socialLink:hover::after {
   width: 100%;
 }
 
 .copyright {
   font-size: 0.7rem;
   color: rgba(250, 249, 246, 0.15);
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 768px) {
   .contact {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
+    align-items: center;
   }
+  
   .social {
     gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
   }
+  
+  .socialLink span {
+    display: none;
+  }
+  
+  .socialLink svg {
+    width: 28px;
+    height: 28px;
+  }
+  
   .cta a {
     padding: 1rem 2rem;
     font-size: 0.7rem;
   }
+  
   .portraitFrame {
     width: 64px;
     height: 64px;
   }
+  
   .signature {
     font-size: 1.3rem;
   }
@@ -234,17 +285,78 @@
     width: 56px;
     height: 56px;
   }
+  
   .signature {
     font-size: 1.1rem;
   }
+  
   .tagline {
     font-size: 0.65rem;
   }
+  
   .cta a {
     padding: 0.8rem 1.5rem;
     font-size: 0.6rem;
   }
-  .social a {
-    font-size: 0.6rem;
+  
+  .contactItem {
+    font-size: 0.75rem;
   }
+  
+  .contactItem svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Add this to Footer.module.css */
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.2rem 2.8rem;
+  border: 1px solid var(--gold);
+  border-radius: 50px;
+  color: var(--white);
+  font-family: var(--font-space), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(212, 175, 55, 0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.ctaButton:hover {
+  color: var(--black);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
+}
+
+.ctaButton:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.ctaButton svg {
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover svg {
+  transform: translateX(4px);
 }

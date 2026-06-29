@@ -2,10 +2,12 @@
   --black: #050505;
   --charcoal: #0a0a0a;
   --gold: #D4AF37;
-  --gold-light: #F4D03F;
-  --gold-dim: #8c6f2e;
-  --ivory: #FAF9F6;
-  --glass: rgba(255, 255, 255, 0.06);
+  --gold-light: #E8C84A;
+  --silver: #C0C0C0;
+  --silver-light: #E8E8E8;
+  --white: #FFFFFF;
+  --white-dark: #FAFAFA;
+  --glass: rgba(255, 255, 255, 0.05);
   --border: rgba(255, 255, 255, 0.08);
 }
 
@@ -22,8 +24,8 @@ html {
 
 body {
   background: var(--black);
-  color: var(--ivory);
-  font-family: var(--font-inter);
+  color: var(--white);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   cursor: none;
@@ -55,40 +57,46 @@ img {
   display: block;
 }
 
-h1, h2, h3 {
-  font-family: var(--font-playfair);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+/* Simple Headings - No decorative fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--white);
 }
 
 p {
-  line-height: 1.6;
-  color: rgba(250, 249, 246, 0.72);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 400;
 }
 
-em {
-  font-family: var(--font-cormorant);
-  font-style: italic;
+/* Gold accent for emphasis */
+em, .gold-text {
   color: var(--gold);
-  font-weight: 500;
+  font-style: normal;
+}
+
+.silver-text {
+  color: var(--silver);
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.6em;
-  font-family: var(--font-space);
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
+  font-family: var(--font-space), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.85;
-  margin-bottom: 1.4rem;
+  color: var(--silver);
+  opacity: 0.7;
+  margin-bottom: 1.2rem;
 }
 
 .eyebrow::before {
   content: '';
-  width: 22px;
+  width: 24px;
   height: 1px;
   background: var(--gold);
 }
@@ -98,7 +106,7 @@ em {
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.03;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -145,25 +153,18 @@ em {
 }
 
 .loading-text {
-  font-family: var(--font-playfair);
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(2rem, 4vw, 4rem);
-  font-weight: 900;
+  font-weight: 700;
   color: var(--gold);
   letter-spacing: 0.05em;
-  text-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
-  animation: textGlow 2s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-  0%, 100% { text-shadow: 0 0 60px rgba(212, 175, 55, 0.2); }
-  50% { text-shadow: 0 0 80px rgba(212, 175, 55, 0.4); }
 }
 
 .loading-subtitle {
-  font-family: var(--font-inter);
+  font-family: var(--font-inter), sans-serif;
   font-size: clamp(0.7rem, 1.2vw, 1rem);
-  color: rgba(250, 249, 246, 0.6);
-  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
   text-align: center;
   padding: 0 1rem;
   max-width: 600px;
@@ -211,9 +212,9 @@ em {
 }
 
 .loading-percent {
-  font-family: var(--font-space);
+  font-family: var(--font-space), monospace;
   font-size: 0.8rem;
-  color: rgba(250, 249, 246, 0.3);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .loading-dots {

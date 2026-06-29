@@ -54,7 +54,7 @@ export default function ImageConsultant() {
               fill
               className={styles.image}
               sizes="(max-width: 768px) 100vw, 50vw"
-              quality={95}
+              quality={85}
               priority
             />
             <div className={styles.imageOverlay}></div>

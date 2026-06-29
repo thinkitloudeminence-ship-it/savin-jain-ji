@@ -1,4 +1,3 @@
-// src/components/Story.tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -17,7 +16,6 @@ export default function Story() {
           if (entry.isIntersecting) {
             const lines = document.querySelectorAll('.story-line');
             
-            // Background pulse animation
             anime({
               targets: '.story-bg-glow',
               scale: [0.8, 1.2, 0.8],
@@ -30,7 +28,6 @@ export default function Story() {
             lines.forEach((line, index) => {
               const delay = index * 1000;
               
-              // Main text reveal
               setTimeout(() => {
                 anime({
                   targets: line,
@@ -46,7 +43,6 @@ export default function Story() {
                 });
               }, delay);
 
-              // Particle burst effect
               setTimeout(() => {
                 const particleCount = 20;
                 const container = containerRef.current;
@@ -88,7 +84,6 @@ export default function Story() {
                 }
               }, delay + 400);
 
-              // Gold line sweep effect
               setTimeout(() => {
                 const lineEl = line as HTMLElement;
                 const sweep = document.createElement('div');

@@ -14,7 +14,6 @@ export default function Leadership() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Animate stars with staggered delay
             starsRef.current.forEach((star, i) => {
               if (!star) return;
               anime({
@@ -28,7 +27,6 @@ export default function Leadership() {
               });
             });
 
-            // Animate quote
             anime({
               targets: quoteRef.current,
               opacity: [0, 1],

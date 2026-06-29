@@ -1,4 +1,3 @@
-// src/app/page.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -10,14 +9,16 @@ import Particles from "@/components/Particles";
 import Navbar from "@/components/Navbar";
 
 const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
-const About = dynamic(() => import("../components/About"), { ssr: false });
-const Journey = dynamic(() => import("../components/Journey"), { ssr: false });
+const About = dynamic(() => import("@/components/About"), { ssr: false });
+const Journey = dynamic(() => import("@/components/Journey"), { ssr: false });
 const Impact = dynamic(() => import("@/components/Impact"), { ssr: false });
 const ImageConsultant = dynamic(() => import("@/components/ImageConsultant"), { ssr: false });
-const SocialWork = dynamic(() => import("../components/SocialWork"), { ssr: false });
+const SocialImpact = dynamic(() => import("@/components/SocialImpact"), { ssr: false });
+const Business = dynamic(() => import("@/components/Business"), { ssr: false });
 const Events = dynamic(() => import("@/components/Events"), { ssr: false });
 const Leadership = dynamic(() => import("@/components/Leadership"), { ssr: false });
-const Sports = dynamic(() => import("../components/Sports"), { ssr: false });
+const Sports = dynamic(() => import("@/components/Sports"), { ssr: false });
+const Story = dynamic(() => import("@/components/Story"), { ssr: false });
 const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 export default function Home() {
@@ -54,11 +55,13 @@ export default function Home() {
         <About />
         <Journey />
         <Impact />
+        <Business />
         <ImageConsultant />
-        <SocialWork />
+        <SocialImpact />
         <Events />
         <Leadership />
         <Sports />
+        <Story />
         <Footer />
       </main>
     </>

@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -16,22 +15,55 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    setIsOpen(false);
+    
+    // Try to find section
+    let section = document.getElementById(sectionId);
+    
+    // If not found, try common variations
+    if (!section) {
+      const idMap: Record<string, string> = {
+        "story": "story",
+        "business": "business", 
+        "consultant": "consultant",
+        "impact": "impact",
+        "events": "events",
+        "leadership": "leadership",
+        "footer": "footer",
+        "hero": "hero"
+      };
+      section = document.getElementById(idMap[sectionId] || sectionId);
+    }
+    
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      console.log(`✅ Scrolled to: ${sectionId}`);
+    } else {
+      console.error(`❌ Section not found: ${sectionId}`);
+      alert(`Section "${sectionId}" not found on page. Please check IDs.`);
+    }
+  };
+
   const navItems = [
-    { label: "Story", href: "#story" },
-    { label: "Business", href: "#business" },
-    { label: "Consultant", href: "#consultant" },
-    { label: "Impact", href: "#social" },
-    { label: "Events", href: "#events" },
-    { label: "Leadership", href: "#leadership" },
+    { label: "Story", id: "story" },
+    { label: "Business", id: "business" },
+    { label: "Consultant", id: "consultant" },
+    { label: "Impact", id: "impact" },
+    { label: "Events", id: "events" },
+    { label: "Leadership", id: "leadership" },
   ];
 
   return (
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.navContainer}>
-        <a href="#hero" className={styles.logo}>
+        <button
+          onClick={() => scrollToSection("hero")}
+          className={styles.logo}
+        >
           <span className={styles.logoGold}>S</span>J
           <span className={styles.logoSub}>Savin Jain</span>
-        </a>
+        </button>
 
         <button
           className={`${styles.menuBtn} ${isOpen ? styles.active : ""}`}
@@ -45,16 +77,22 @@ export default function Navbar() {
 
         <ul className={`${styles.navLinks} ${isOpen ? styles.open : ""}`}>
           {navItems.map((item) => (
-            <li key={item.href}>
-              <a href={item.href} onClick={() => setIsOpen(false)}>
+            <li key={item.id}>
+              <button
+                onClick={() => scrollToSection(item.id)}
+                className={styles.navLinkBtn}
+              >
                 {item.label}
-              </a>
+              </button>
             </li>
           ))}
           <li>
-            <a href="#footer" className={styles.navCTA}>
+            <button
+              onClick={() => scrollToSection("footer")}
+              className={styles.navCTA}
+            >
               Connect
-            </a>
+            </button>
           </li>
         </ul>
       </div>
