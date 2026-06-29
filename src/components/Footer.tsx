@@ -1,8 +1,8 @@
-// src/components/Footer.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
 import anime from "animejs";
+import Image from "next/image";
 import styles from "@/styles/Footer.module.css";
 
 export default function Footer() {
@@ -27,48 +27,53 @@ export default function Footer() {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   return (
     <footer className={styles.footer} id="footer" ref={sectionRef}>
       <div className={styles.container}>
-        <blockquote className={`${styles.quote} footer-reveal`}>
-          &ldquo;The greatest legacy is not what we build&hellip;
-          <br />
-          It is the <em>lives we inspire.</em>&rdquo;
-        </blockquote>
-
-        <div className={styles.portrait}>
-          <div className={styles.portraitFrame}>
-            <svg viewBox="0 0 100 120" fill="none">
-              <path
-                d="M50 10 C 65 10 73 24 73 40 C 73 52 67 60 60 64 C 78 70 90 84 90 105 L 10 105 C 10 84 22 70 40 64 C 33 60 27 52 27 40 C 27 24 35 10 50 10 Z"
-                stroke="#D4AF37"
-                strokeWidth="1.2"
-              />
-            </svg>
-          </div>
-          <span className={styles.signature}>Savin Jain</span>
+        <div className={styles.quote}>
+          <blockquote className="footer-reveal">
+            &ldquo;The true measure of a leader is not in what they achieve, but in <em>how many lives</em> they touch along the way.&rdquo;
+          </blockquote>
         </div>
 
-        <a href="#hero" className={`${styles.cta} footer-reveal`}>
-          Let's create meaningful impact together
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </a>
+        <div className={`${styles.portrait} footer-reveal`}>
+          <div className={styles.portraitFrame}>
+            <Image
+              src="/footerimage.jpeg"
+              alt="Savin Jain"
+              fill
+              className={styles.portraitImage}
+              sizes="80px"
+              quality={95}
+            />
+          </div>
+          <span className={styles.signature}>Savin Jain</span>
+          <span className={styles.tagline}>Image Consultant · Social Worker · Events Organizer · Public Leader</span>
+        </div>
+
+        <div className={`${styles.cta} footer-reveal`}>
+          <a href="#hero">
+            Let's Create Meaningful Impact Together
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
 
         <div className={`${styles.bottom} footer-reveal`}>
-          <p>hello@savinjain.com</p>
+          <div className={styles.contact}>
+            <p>📧 hello@savinjain.com</p>
+            <p>📱 +91 98765 43210</p>
+          </div>
           <div className={styles.social}>
             <a href="#" aria-label="LinkedIn">LinkedIn</a>
             <a href="#" aria-label="Twitter">Twitter</a>
             <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="YouTube">YouTube</a>
           </div>
           <p className={styles.copyright}>&copy; 2024 Savin Jain. All rights reserved.</p>
         </div>

@@ -3,19 +3,22 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
-import Hero from "@/components/Hero";
-import Business from "../components/Business";
-import ImageConsultant from "../components/ImageConsultant";
-import SocialImpact from "../components/SocialImpact";
-import Events from "../components/Events";
-import Leadership from "../components/Leadership";
-import Story from "../components/Story";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Loader from "../components/Loader";
-import CustomCursor from "../components/CustomCursor";
-import BackgroundCanvas from "../components/BackgroundCanvas";
-import Particles from "../components/Particles";
+import dynamic from "next/dynamic";
+import Loader from "@/components/Loader";
+import CustomCursor from "@/components/CustomCursor";
+import Particles from "@/components/Particles";
+import Navbar from "@/components/Navbar";
+
+const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
+const About = dynamic(() => import("../components/About"), { ssr: false });
+const Journey = dynamic(() => import("../components/Journey"), { ssr: false });
+const Impact = dynamic(() => import("@/components/Impact"), { ssr: false });
+const ImageConsultant = dynamic(() => import("@/components/ImageConsultant"), { ssr: false });
+const SocialWork = dynamic(() => import("../components/SocialWork"), { ssr: false });
+const Events = dynamic(() => import("@/components/Events"), { ssr: false });
+const Leadership = dynamic(() => import("@/components/Leadership"), { ssr: false });
+const Sports = dynamic(() => import("../components/Sports"), { ssr: false });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -37,26 +40,25 @@ export default function Home() {
 
     requestAnimationFrame(raf);
 
-    return () => {
-      lenis.destroy();
-    };
+    return () => lenis.destroy();
   }, []);
 
   return (
     <>
       <Loader />
       <CustomCursor />
-      <BackgroundCanvas />
       <Particles />
       <Navbar />
       <main>
         <Hero />
-        <Story />
-        <Business />
+        <About />
+        <Journey />
+        <Impact />
         <ImageConsultant />
-        <SocialImpact />
+        <SocialWork />
         <Events />
         <Leadership />
+        <Sports />
         <Footer />
       </main>
     </>

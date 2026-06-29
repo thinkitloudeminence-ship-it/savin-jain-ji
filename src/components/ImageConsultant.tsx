@@ -1,8 +1,8 @@
-// src/components/ImageConsultant.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
 import anime from "animejs";
+import Image from "next/image";
 import styles from "@/styles/ImageConsultant.module.css";
 
 export default function ImageConsultant() {
@@ -14,9 +14,7 @@ export default function ImageConsultant() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const tl = anime.timeline({
-              easing: "easeOutExpo",
-            });
+            const tl = anime.timeline({ easing: "easeOutExpo" });
 
             tl.add({
               targets: ".consultant-reveal",
@@ -41,10 +39,7 @@ export default function ImageConsultant() {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -53,32 +48,35 @@ export default function ImageConsultant() {
       <div className={styles.split}>
         <div className={styles.imageWrapper}>
           <div ref={imageRef} className={styles.imageContainer}>
+            <Image
+              src="/Image Consulting Portfolio.jpeg"
+              alt="Savin Jain - Image Consulting Portfolio"
+              fill
+              className={styles.image}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              quality={95}
+              priority
+            />
+            <div className={styles.imageOverlay}></div>
             <div className={styles.imagePlaceholder}>
-              <svg viewBox="0 0 100 120" fill="none">
-                <path
-                  d="M50 10 C 65 10 73 24 73 40 C 73 52 67 60 60 64 C 78 70 90 84 90 105 L 10 105 C 10 84 22 70 40 64 C 33 60 27 52 27 40 C 27 24 35 10 50 10 Z"
-                  stroke="#D4AF37"
-                  strokeWidth="1.5"
-                />
-                <circle cx="50" cy="40" r="15" stroke="#D4AF37" strokeWidth="1.2" />
-              </svg>
-              <span className={styles.imageHint}>Editorial portrait placeholder</span>
+              <span className={styles.imageHint}>Image Consulting Portfolio</span>
             </div>
             <div className={styles.lightSweep}></div>
           </div>
         </div>
         <div className={styles.content}>
-          <span className={`eyebrow consultant-reveal`}>Image &amp; Presence</span>
+          <span className={`eyebrow consultant-reveal`}>Image Consulting</span>
           <h2 className={`consultant-reveal`}>
-            The art of <em>presence.</em>
+            The Art of <em>Presence</em>
           </h2>
           <p className={`consultant-reveal`}>
-            Every room remembers how you entered it. Tailored style, deliberate posture,
-            an unhurried voice — presence is not performance, it is preparation made invisible.
+            As a leading <em>Image Consultant</em>, Savin Jain has transformed the personal and professional personas of countless individuals. From corporate leaders to public figures, his expertise in personal branding, style curation, and presence development has helped people unlock their true potential.
           </p>
           <p className={`consultant-reveal`}>
-            With over a decade of curating executive presence, Savin Jain has redefined
-            how leaders show up. Not just in boardrooms, but in every arena of influence.
+            With a deep understanding of psychology, fashion, and communication, Savin Jain creates holistic image strategies that go beyond appearance — building confidence, credibility, and lasting impact.
+          </p>
+          <p className={`consultant-reveal`}>
+            His clientele includes business executives, politicians, celebrities, and aspiring professionals who seek to make a lasting impression in their respective fields.
           </p>
         </div>
       </div>

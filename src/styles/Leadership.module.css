@@ -1,95 +1,392 @@
 /* src/styles/Leadership.module.css */
 .leadership {
+  position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 8vh 7vw;
   background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.backgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.03), transparent 70%);
+  pointer-events: none;
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
   text-align: center;
 }
 
 .title {
-  font-size: clamp(2.2rem, 5.4vw, 3.8rem);
-  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: 0.5rem;
   font-family: var(--font-playfair);
   font-weight: 800;
-  letter-spacing: -0.02em;
 }
 
 .title em {
   color: var(--gold);
   font-family: var(--font-cormorant);
   font-style: italic;
-  font-weight: 700;
 }
 
 .lede {
-  max-width: 46ch;
-  margin-bottom: 4rem;
-  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  color: rgba(250, 249, 246, 0.6);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.6;
 }
 
 .constellation {
   position: relative;
-  width: min(900px, 88vw);
-  height: 50vh;
-  min-height: 280px;
+  width: 100%;
+  max-width: 900px;
+  height: 55vh;
+  min-height: 400px;
+  margin: 0 auto 3rem;
 }
 
 .star {
   position: absolute;
   transform: translate(-50%, -50%);
-  font-family: var(--font-space);
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
-  letter-spacing: 0.06em;
-  color: rgba(250, 249, 246, 0.55);
-  padding: 0.6em 1.2em;
-  border: 1px solid var(--border);
-  border-radius: 40px;
-  background: var(--glass);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   opacity: 0;
-  scale: 0.8;
+  scale: 0.5;
+  min-width: 90px;
+  z-index: 2;
+}
+
+.star::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 12px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
 }
 
 .star:hover {
-  color: var(--black);
-  background: var(--gold);
-  border-color: var(--gold);
-  transform: translate(-50%, -50%) scale(1.12);
-  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translate(-50%, -50%) scale(1.15);
+  background: rgba(212, 175, 55, 0.08);
+  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.15);
 }
 
+.starIcon {
+  font-size: 1.2rem;
+  color: var(--gold);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.star:hover .starIcon {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.starText {
+  font-family: var(--font-space);
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  letter-spacing: 0.06em;
+  color: rgba(250, 249, 246, 0.7);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.star:hover .starText {
+  color: var(--ivory);
+}
+
+.starGlow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.star:hover .starGlow {
+  opacity: 1;
+}
+
+/* Connecting lines between stars */
+.constellation::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 45% 5%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 75% 20%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 10% 60%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 35% 45%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 65% 50%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 85% 70%, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 25% 85%, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+  background-size: 2px 2px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Quote section */
+.leadershipQuote {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.quoteLine {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto;
+}
+
+.quoteLine:first-child {
+  margin-bottom: 1.5rem;
+}
+
+.quoteLine:last-child {
+  margin-top: 1.5rem;
+}
+
+.leadershipQuote blockquote {
+  font-family: var(--font-playfair);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: var(--ivory);
+  line-height: 1.6;
+}
+
+.leadershipQuote em {
+  color: var(--gold);
+  font-family: var(--font-cormorant);
+  font-style: italic;
+}
+
+/* Mobile View - Tablet */
 @media (max-width: 1024px) {
   .constellation {
     height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    justify-content: center;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     padding: 1rem 0;
   }
 
   .star {
     position: static;
     transform: none !important;
-    font-size: 0.85rem;
-    padding: 0.5em 1em;
+    min-width: 0;
+    padding: 0.8rem 1rem;
+    flex-direction: row;
+    gap: 0.6rem;
+    border-radius: 8px;
   }
 
   .star:hover {
     transform: scale(1.05) !important;
   }
+
+  .starIcon {
+    font-size: 1rem;
+  }
+
+  .starText {
+    font-size: 0.75rem;
+  }
+
+  .starGlow {
+    display: none;
+  }
+
+  .constellation::before {
+    display: none;
+  }
 }
 
+/* Mobile View - Small Tablets & Large Phones */
 @media (max-width: 768px) {
+  .leadership {
+    padding: 6vh 5vw;
+  }
+
+  .constellation {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .star {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .starIcon {
+    font-size: 0.9rem;
+  }
+
+  .starText {
+    font-size: 0.7rem;
+  }
+
   .lede {
     font-size: 0.95rem;
     padding: 0 1rem;
+  }
+
+  .leadershipQuote blockquote {
+    font-size: 1.1rem;
+  }
+
+  .quoteLine {
+    width: 40px;
+  }
+}
+
+/* Mobile View - Small Phones */
+@media (max-width: 480px) {
+  .leadership {
+    padding: 4vh 4vw;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .constellation {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .star {
+    padding: 0.5rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .starIcon {
+    font-size: 0.8rem;
+  }
+
+  .starText {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+
+  .lede {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+  }
+
+  .leadershipQuote blockquote {
+    font-size: 1rem;
+  }
+
+  .leadershipQuote {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .quoteLine:first-child {
+    margin-bottom: 1rem;
+  }
+
+  .quoteLine:last-child {
+    margin-top: 1rem;
+  }
+}
+
+/* Very Small Phones */
+@media (max-width: 360px) {
+  .constellation {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .star {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .starText {
+    font-size: 0.6rem;
+  }
+
+  .starIcon {
+    font-size: 0.7rem;
+  }
+}
+
+/* Landscape phones */
+@media (max-height: 600px) and (orientation: landscape) {
+  .constellation {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .star {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .starText {
+    font-size: 0.6rem;
+  }
+
+  .leadership {
+    padding: 4vh 5vw;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .lede {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
   }
 }

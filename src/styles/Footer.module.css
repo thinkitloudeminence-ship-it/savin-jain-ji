@@ -1,7 +1,7 @@
 /* src/styles/Footer.module.css */
 .footer {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,22 +11,22 @@
 }
 
 .container {
+  max-width: 1200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  max-width: 900px;
-  width: 100%;
   text-align: center;
 }
 
-.quote {
+.quote blockquote {
   font-family: var(--font-playfair);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
   font-weight: 800;
-  font-size: clamp(1.8rem, 4.6vw, 3.2rem);
-  line-height: 1.3;
   color: var(--ivory);
-  max-width: 74ch;
+  line-height: 1.4;
+  max-width: 800px;
   opacity: 0;
   transform: translateY(30px);
 }
@@ -35,44 +35,63 @@
   color: var(--gold);
   font-family: var(--font-cormorant);
   font-style: italic;
-  font-weight: 700;
 }
 
 .portrait {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   opacity: 0;
   transform: translateY(30px);
 }
 
 .portraitFrame {
-  width: 72px;
-  height: 72px;
+  position: relative;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 2px solid var(--gold);
   background: linear-gradient(160deg, #181818, #060606);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+  transition: all 0.3s ease;
 }
 
-.portraitFrame svg {
-  width: 46%;
-  opacity: 0.5;
+.portraitFrame:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 60px rgba(212, 175, 55, 0.3);
+  border-color: var(--gold-light);
+}
+
+.portraitImage {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 .signature {
-  font-family: var(--font-cormorant);
-  font-style: italic;
-  font-weight: 700;
+  font-family: var(--font-playfair);
   font-size: 1.6rem;
+  font-weight: 800;
   color: var(--gold);
+  letter-spacing: 0.02em;
+}
+
+.tagline {
+  font-family: var(--font-inter);
+  font-size: 0.8rem;
+  color: rgba(250, 249, 246, 0.4);
+  letter-spacing: 0.05em;
 }
 
 .cta {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.cta a {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
@@ -86,32 +105,30 @@
   text-transform: uppercase;
   text-decoration: none;
   background: rgba(212, 175, 55, 0.05);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  transform: translateY(30px);
+  transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
 }
 
-.cta::before {
+.cta a::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--gold);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.5s ease;
   z-index: -1;
 }
 
-.cta:hover {
+.cta a:hover {
   color: var(--black);
   border-color: var(--gold);
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(212, 175, 55, 0.2);
 }
 
-.cta:hover::before {
+.cta a:hover::before {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -120,7 +137,7 @@
   transition: transform 0.3s ease;
 }
 
-.cta:hover svg {
+.cta a:hover svg {
   transform: translateX(4px);
 }
 
@@ -136,9 +153,17 @@
   transform: translateY(30px);
 }
 
-.bottom p {
+.contact {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact p {
   font-size: 0.85rem;
-  color: rgba(250, 249, 246, 0.5);
+  color: rgba(250, 249, 246, 0.4);
+  font-family: var(--font-inter);
 }
 
 .social {
@@ -151,35 +176,74 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(250, 249, 246, 0.4);
+  color: rgba(250, 249, 246, 0.3);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.social a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
 }
 
 .social a:hover {
   color: var(--gold);
 }
 
-.copyright {
-  font-size: 0.7rem !important;
-  color: rgba(250, 249, 246, 0.25) !important;
+.social a:hover::after {
+  width: 100%;
 }
 
-.footer-reveal {
-  opacity: 0;
-  transform: translateY(30px);
+.copyright {
+  font-size: 0.7rem;
+  color: rgba(250, 249, 246, 0.15);
 }
 
 @media (max-width: 768px) {
-  .cta {
+  .contact {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .social {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cta a {
     padding: 1rem 2rem;
     font-size: 0.7rem;
   }
-
-  .social {
-    gap: 1.5rem;
+  .portraitFrame {
+    width: 64px;
+    height: 64px;
   }
+  .signature {
+    font-size: 1.3rem;
+  }
+}
 
+@media (max-width: 480px) {
+  .portraitFrame {
+    width: 56px;
+    height: 56px;
+  }
+  .signature {
+    font-size: 1.1rem;
+  }
+  .tagline {
+    font-size: 0.65rem;
+  }
+  .cta a {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.6rem;
+  }
   .social a {
     font-size: 0.6rem;
   }

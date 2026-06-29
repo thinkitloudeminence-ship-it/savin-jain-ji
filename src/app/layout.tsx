@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Cormorant_Garamond, Space_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -29,42 +28,24 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Savin Jain — Vision. Leadership. Influence.",
-  description: "Entrepreneur, Image Consultant, Social Worker, Public Leader",
-  keywords: "Savin Jain, entrepreneur, leadership, influence, social impact",
+  title: "Savin Jain — Visionary Leader | Image Consultant | Social Worker | Public Leader",
+  description: "Official website of Savin Jain - Image Consultant, Social Worker, Big Events Organizer, Public Leader, and Politician. Making a difference through leadership and service.",
+  keywords: "Savin Jain, Image Consultant, Social Worker, Events Organizer, Public Leader, Politician, Leadership",
   openGraph: {
-    title: "Savin Jain — Vision. Leadership. Influence.",
-    description: "Entrepreneur, Image Consultant, Social Worker, Public Leader",
+    title: "Savin Jain — Visionary Leader | Image Consultant | Social Worker",
+    description: "Official website of Savin Jain - Making a difference through leadership and service.",
     url: "https://savinjain.com",
     siteName: "Savin Jain",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Savin Jain — Vision. Leadership. Influence.",
-    description: "Entrepreneur, Image Consultant, Social Worker, Public Leader",
-    images: ["/images/og-image.jpg"],
-  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${spaceGrotesk.variable}`}>
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
